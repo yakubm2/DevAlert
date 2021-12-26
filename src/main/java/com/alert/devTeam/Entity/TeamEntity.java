@@ -5,7 +5,9 @@
  */
 package com.alert.devTeam.Entity;
 
+import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,14 +21,14 @@ import lombok.Data;
 @Entity
 @Table(name = "team")
 @Data
-public class Team {
+public class TeamEntity {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;
     
-    @OneToMany(mappedBy="team")
-    private Set<Developer> developers;
+    @OneToMany(mappedBy="team",cascade = CascadeType.ALL)
+    private List<Developer> developers;
 
 }

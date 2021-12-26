@@ -5,16 +5,24 @@
  */
 package com.alert.devTeam.controller;
 
+import com.alert.devTeam.Model.TeamDTO;
+import com.alert.devTeam.service.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/team")
 public class Team {
+   @Autowired
+   TeamService teamService;
    
     @PostMapping(path = "/create", produces = "application/json")
-    public String createTeam() {
+    public String createTeam(@RequestBody TeamDTO teamDetails) {
+       // System.out.print("teamDetails: "+teamDetails);
+        teamService.saveTeamDetails(teamDetails);
         return "created Team";
     }
     

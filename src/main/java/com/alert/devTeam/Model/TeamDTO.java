@@ -6,11 +6,12 @@
 package com.alert.devTeam.Model;
 
 import java.util.ArrayList;
+import lombok.Data;
 
-
+@Data
 public class TeamDTO {
    String id;
    String name;
-   ArrayList Developer;
+   ArrayList<DeveloperDTO> developers;
     
 }

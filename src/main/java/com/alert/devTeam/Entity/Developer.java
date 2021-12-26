@@ -31,6 +31,6 @@ public class Developer {
     
     @ManyToOne
     @JoinColumn(name="team_id", nullable=false)
-    private Team team;
+    private TeamEntity team;
 
 }
