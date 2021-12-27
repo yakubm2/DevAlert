@@ -28,7 +28,7 @@ public class TeamEntity {
     @Column(name = "name")
     private String name;
     
-    @OneToMany(mappedBy="team",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="team")
     private List<Developer> developers;
 
 }

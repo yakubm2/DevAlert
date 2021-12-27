@@ -10,7 +10,9 @@ import com.alert.devTeam.Entity.TeamEntity;
 import com.alert.devTeam.Model.TeamDTO;
 import com.alert.devTeam.repository.DeveloperRepo;
 import com.alert.devTeam.repository.TeamRepo;
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,24 +22,27 @@ import org.springframework.stereotype.Service;
 public class TeamService {
     @Autowired
     TeamRepo teamRepo;
+    
     @Autowired
-    DeveloperRepo developerRepo;
+    DeveloperRepo dev;
     public void saveTeamDetails(TeamDTO teamDetails){
         System.out.println("teamDetails"+teamDetails);
        
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.LOOSE);
         TeamEntity teamEntity = modelMapper.map(teamDetails, TeamEntity.class);
-        System.out.println("teamEntity"+teamEntity);
+        System.out.println("teamEntity::"+teamEntity);
         teamRepo.save(teamEntity);
+        dev.saveAll(teamEntity.getDevelopers());
+        
     }
     
     public String alertDeveloper(String teamId){
         boolean existByTeamId=teamRepo.existsById(teamId);
         if(existByTeamId){
-            List<Developer> developers=teamRepo.findAllByTeamId(teamId);
+          //  List<Developer> developers=teamRepo.findAllByTeamId(teamId);
+            System.out.println("hi all");
             
-            developers.forEach(element->element.getId());
             return "id";
         }else{
      return null;}   

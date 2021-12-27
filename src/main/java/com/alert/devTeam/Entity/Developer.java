@@ -5,6 +5,7 @@
  */
 package com.alert.devTeam.Entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,8 @@ public class Developer {
     @Column(name = "phoneNumber")
     private String phoneNumber;
     
-    @ManyToOne
-    @JoinColumn(name="team_id", nullable=false)
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="team_id")
     private TeamEntity team;
 
 }

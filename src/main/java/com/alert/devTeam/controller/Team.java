@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -27,7 +28,9 @@ public class Team {
     }
     
     @PostMapping(path = "{team_id}/alert", produces = "application/json")
-    public String alertTeam() {
-        return "created Team";
+    public String alertTeam(@RequestParam(defaultValue="team_id") String teamId) {
+        
+        teamService.alertDeveloper(teamId);
+        return "alerted Developer";
     }
 }

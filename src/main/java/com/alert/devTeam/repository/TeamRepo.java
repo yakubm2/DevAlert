@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 public interface TeamRepo extends CrudRepository<TeamEntity, String> {
     boolean existsById(int number);
     
-    List<Developer> findAllByTeamId(final String teamId);
+    
+   // List<Developer> findAllByTeamId(String teamId);
     
 }
